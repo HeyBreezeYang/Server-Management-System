@@ -1,0 +1,1126 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.system.started.javaconf.ElasticJobConfig",
+      "name": "oss.apigate.elaticjob.zookeeper",
+      "sourceMethod": "public com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration zookeeperConfiguration(com.system.started.javaconf.properties.ElasticJobConfigProperties) ",
+      "type": "com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration"
+    },
+    {
+      "sourceType": "com.system.started.javaconf.ElasticJobConfig",
+      "name": "oss.apigate.elaticjob.zookeeper",
+      "sourceMethod": "public com.system.started.javaconf.properties.ElasticJobConfigProperties elasticJobProperties() ",
+      "type": "com.system.started.javaconf.properties.ElasticJobConfigProperties"
+    },
+    {
+      "sourceType": "com.system.started.javaconf.DatabaseConfig",
+      "name": "oss.database.apigate.dbcp2.oss",
+      "sourceMethod": "public org.apache.commons.dbcp2.BasicDataSource ossDataSource() ",
+      "type": "org.apache.commons.dbcp2.BasicDataSource"
+    },
+    {
+      "sourceType": "com.system.started.javaconf.DatabaseConfig",
+      "name": "oss.database.apigate.dbcp2.zabbix",
+      "sourceMethod": "public org.apache.commons.dbcp2.BasicDataSource zabbixDataSource() ",
+      "type": "org.apache.commons.dbcp2.BasicDataSource"
+    },
+    {
+      "sourceType": "com.system.started.javaconf.DatabaseConfig",
+      "name": "oss.database.apigate.mybaltis.oss",
+      "sourceMethod": "public org.mybatis.spring.boot.autoconfigure.MybatisProperties ossMybatisProperties() ",
+      "type": "org.mybatis.spring.boot.autoconfigure.MybatisProperties"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.oss.configuration",
+      "sourceMethod": "public org.apache.ibatis.session.Configuration getConfiguration() ",
+      "type": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "sourceType": "com.system.started.javaconf.DatabaseConfig",
+      "name": "oss.database.apigate.mybaltis.zabbix",
+      "sourceMethod": "public org.mybatis.spring.boot.autoconfigure.MybatisProperties zabbixMybatisProperties() ",
+      "type": "org.mybatis.spring.boot.autoconfigure.MybatisProperties"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration",
+      "sourceMethod": "public org.apache.ibatis.session.Configuration getConfiguration() ",
+      "type": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "sourceType": "com.system.started.javaconf.RabbitMQConfig",
+      "name": "oss.rabbit.apigate.notification",
+      "sourceMethod": "public com.system.started.javaconf.properties.RabbitMQConfigProperties notificationProperties() ",
+      "type": "com.system.started.javaconf.properties.RabbitMQConfigProperties"
+    },
+    {
+      "sourceType": "com.system.started.javaconf.ShiroConfig",
+      "name": "oss.shiro.session.scheduler",
+      "sourceMethod": "public org.apache.shiro.session.mgt.SessionValidationScheduler sessionValidationScheduler() ",
+      "type": "org.apache.shiro.session.mgt.SessionValidationScheduler"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration",
+      "name": "oss.apigate.elaticjob.zookeeper.base-sleep-time-milliseconds",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration",
+      "name": "oss.apigate.elaticjob.zookeeper.connection-timeout-milliseconds",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration",
+      "name": "oss.apigate.elaticjob.zookeeper.digest",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration",
+      "name": "oss.apigate.elaticjob.zookeeper.max-retries",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration",
+      "name": "oss.apigate.elaticjob.zookeeper.max-sleep-time-milliseconds",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.system.started.javaconf.properties.ElasticJobConfigProperties",
+      "name": "oss.apigate.elaticjob.zookeeper.name-space",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.system.started.javaconf.properties.ElasticJobConfigProperties",
+      "name": "oss.apigate.elaticjob.zookeeper.server-list",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration",
+      "name": "oss.apigate.elaticjob.zookeeper.session-timeout-milliseconds",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.abandoned-usage-tracking",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.access-to-underlying-connection-allowed",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.cache-state",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.connection-init-sqls",
+      "type": "java.util.List<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.default-auto-commit",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.default-catalog",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.default-query-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.default-read-only",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.default-transaction-isolation",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.disconnection-sql-codes",
+      "type": "java.util.Set<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.driver",
+      "type": "java.sql.Driver"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.driver-class-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.enable-auto-commit-on-return",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.eviction-policy-class-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.fast-fail-validation",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.initial-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.jmx-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.lifo",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.log-abandoned",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.log-expired-connections",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.login-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.max-conn-lifetime-millis",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.max-idle",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.max-open-prepared-statements",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.max-total",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.max-wait-millis",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.min-evictable-idle-time-millis",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.min-idle",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.num-tests-per-eviction-run",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.pool-prepared-statements",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.remove-abandoned-on-borrow",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.remove-abandoned-on-maintenance",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.remove-abandoned-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.rollback-on-return",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.soft-min-evictable-idle-time-millis",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.test-on-borrow",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.test-on-create",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.test-on-return",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.test-while-idle",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.time-between-eviction-runs-millis",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.username",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.validation-query",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.oss.validation-query-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.abandoned-usage-tracking",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.access-to-underlying-connection-allowed",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.cache-state",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.connection-init-sqls",
+      "type": "java.util.List<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.default-auto-commit",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.default-catalog",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.default-query-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.default-read-only",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.default-transaction-isolation",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.disconnection-sql-codes",
+      "type": "java.util.Set<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.driver",
+      "type": "java.sql.Driver"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.driver-class-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.enable-auto-commit-on-return",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.eviction-policy-class-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.fast-fail-validation",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.initial-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.jmx-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.lifo",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.log-abandoned",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.log-expired-connections",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.login-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.max-conn-lifetime-millis",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.max-idle",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.max-open-prepared-statements",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.max-total",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.max-wait-millis",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.min-evictable-idle-time-millis",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.min-idle",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.num-tests-per-eviction-run",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.pool-prepared-statements",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.remove-abandoned-on-borrow",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.remove-abandoned-on-maintenance",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.remove-abandoned-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.rollback-on-return",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.soft-min-evictable-idle-time-millis",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.test-on-borrow",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.test-on-create",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.test-on-return",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.test-while-idle",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.time-between-eviction-runs-millis",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.username",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.validation-query",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.commons.dbcp2.BasicDataSource",
+      "name": "oss.database.apigate.dbcp2.zabbix.validation-query-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.oss.check-config-location",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "deprecated": true,
+      "name": "oss.database.apigate.mybaltis.oss.config",
+      "type": "java.lang.String",
+      "deprecation": {}
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.oss.config-location",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.oss.configuration-properties",
+      "type": "java.util.Properties"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.aggressive-lazy-loading",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.auto-mapping-behavior",
+      "type": "org.apache.ibatis.session.AutoMappingBehavior"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.auto-mapping-unknown-column-behavior",
+      "type": "org.apache.ibatis.session.AutoMappingUnknownColumnBehavior"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.cache-enabled",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.cache-names",
+      "type": "java.util.Collection<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.caches",
+      "type": "java.util.Collection<org.apache.ibatis.cache.Cache>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.call-setters-on-nulls",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.configuration-factory",
+      "type": "java.lang.Class<?>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.database-id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.default-executor-type",
+      "type": "org.apache.ibatis.session.ExecutorType"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.default-fetch-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.default-statement-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.environment",
+      "type": "org.apache.ibatis.mapping.Environment"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.incomplete-cache-refs",
+      "type": "java.util.Collection<org.apache.ibatis.builder.CacheRefResolver>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.incomplete-methods",
+      "type": "java.util.Collection<org.apache.ibatis.builder.annotation.MethodResolver>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.incomplete-result-maps",
+      "type": "java.util.Collection<org.apache.ibatis.builder.ResultMapResolver>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.incomplete-statements",
+      "type": "java.util.Collection<org.apache.ibatis.builder.xml.XMLStatementBuilder>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.interceptors",
+      "type": "java.util.List<org.apache.ibatis.plugin.Interceptor>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.jdbc-type-for-null",
+      "type": "org.apache.ibatis.type.JdbcType"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.key-generator-names",
+      "type": "java.util.Collection<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.key-generators",
+      "type": "java.util.Collection<org.apache.ibatis.executor.keygen.KeyGenerator>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.lazy-load-trigger-methods",
+      "type": "java.util.Set<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.lazy-loading-enabled",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.local-cache-scope",
+      "type": "org.apache.ibatis.session.LocalCacheScope"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.log-impl",
+      "type": "java.lang.Class<? extends org.apache.ibatis.logging.Log>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.log-prefix",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.map-underscore-to-camel-case",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.mapped-statement-names",
+      "type": "java.util.Collection<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.mapped-statements",
+      "type": "java.util.Collection<org.apache.ibatis.mapping.MappedStatement>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.multiple-result-sets-enabled",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.object-factory",
+      "type": "org.apache.ibatis.reflection.factory.ObjectFactory"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.object-wrapper-factory",
+      "type": "org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.parameter-map-names",
+      "type": "java.util.Collection<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.parameter-maps",
+      "type": "java.util.Collection<org.apache.ibatis.mapping.ParameterMap>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.proxy-factory",
+      "type": "org.apache.ibatis.executor.loader.ProxyFactory"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.reflector-factory",
+      "type": "org.apache.ibatis.reflection.ReflectorFactory"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.result-map-names",
+      "type": "java.util.Collection<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.result-maps",
+      "type": "java.util.Collection<org.apache.ibatis.mapping.ResultMap>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.return-instance-for-empty-row",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.safe-result-handler-enabled",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.safe-row-bounds-enabled",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.sql-fragments",
+      "type": "java.util.Map<java.lang.String,org.apache.ibatis.parsing.XNode>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.use-actual-param-name",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.use-column-label",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.use-generated-keys",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.variables",
+      "type": "java.util.Properties"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.oss.configuration.vfs-impl",
+      "type": "java.lang.Class<? extends org.apache.ibatis.io.VFS>"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.oss.executor-type",
+      "type": "org.apache.ibatis.session.ExecutorType"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.oss.mapper-locations",
+      "type": "java.lang.String[]"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.oss.type-aliases-package",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.oss.type-handlers-package",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.zabbix.check-config-location",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "deprecated": true,
+      "name": "oss.database.apigate.mybaltis.zabbix.config",
+      "type": "java.lang.String",
+      "deprecation": {}
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.zabbix.config-location",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration-properties",
+      "type": "java.util.Properties"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.aggressive-lazy-loading",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.auto-mapping-behavior",
+      "type": "org.apache.ibatis.session.AutoMappingBehavior"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.auto-mapping-unknown-column-behavior",
+      "type": "org.apache.ibatis.session.AutoMappingUnknownColumnBehavior"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.cache-enabled",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.cache-names",
+      "type": "java.util.Collection<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.caches",
+      "type": "java.util.Collection<org.apache.ibatis.cache.Cache>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.call-setters-on-nulls",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.configuration-factory",
+      "type": "java.lang.Class<?>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.database-id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.default-executor-type",
+      "type": "org.apache.ibatis.session.ExecutorType"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.default-fetch-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.default-statement-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.environment",
+      "type": "org.apache.ibatis.mapping.Environment"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.incomplete-cache-refs",
+      "type": "java.util.Collection<org.apache.ibatis.builder.CacheRefResolver>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.incomplete-methods",
+      "type": "java.util.Collection<org.apache.ibatis.builder.annotation.MethodResolver>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.incomplete-result-maps",
+      "type": "java.util.Collection<org.apache.ibatis.builder.ResultMapResolver>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.incomplete-statements",
+      "type": "java.util.Collection<org.apache.ibatis.builder.xml.XMLStatementBuilder>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.interceptors",
+      "type": "java.util.List<org.apache.ibatis.plugin.Interceptor>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.jdbc-type-for-null",
+      "type": "org.apache.ibatis.type.JdbcType"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.key-generator-names",
+      "type": "java.util.Collection<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.key-generators",
+      "type": "java.util.Collection<org.apache.ibatis.executor.keygen.KeyGenerator>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.lazy-load-trigger-methods",
+      "type": "java.util.Set<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.lazy-loading-enabled",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.local-cache-scope",
+      "type": "org.apache.ibatis.session.LocalCacheScope"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.log-impl",
+      "type": "java.lang.Class<? extends org.apache.ibatis.logging.Log>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.log-prefix",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.map-underscore-to-camel-case",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.mapped-statement-names",
+      "type": "java.util.Collection<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.mapped-statements",
+      "type": "java.util.Collection<org.apache.ibatis.mapping.MappedStatement>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.multiple-result-sets-enabled",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.object-factory",
+      "type": "org.apache.ibatis.reflection.factory.ObjectFactory"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.object-wrapper-factory",
+      "type": "org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.parameter-map-names",
+      "type": "java.util.Collection<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.parameter-maps",
+      "type": "java.util.Collection<org.apache.ibatis.mapping.ParameterMap>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.proxy-factory",
+      "type": "org.apache.ibatis.executor.loader.ProxyFactory"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.reflector-factory",
+      "type": "org.apache.ibatis.reflection.ReflectorFactory"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.result-map-names",
+      "type": "java.util.Collection<java.lang.String>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.result-maps",
+      "type": "java.util.Collection<org.apache.ibatis.mapping.ResultMap>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.return-instance-for-empty-row",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.safe-result-handler-enabled",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.safe-row-bounds-enabled",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.sql-fragments",
+      "type": "java.util.Map<java.lang.String,org.apache.ibatis.parsing.XNode>"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.use-actual-param-name",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.use-column-label",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.use-generated-keys",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.variables",
+      "type": "java.util.Properties"
+    },
+    {
+      "sourceType": "org.apache.ibatis.session.Configuration",
+      "name": "oss.database.apigate.mybaltis.zabbix.configuration.vfs-impl",
+      "type": "java.lang.Class<? extends org.apache.ibatis.io.VFS>"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.zabbix.executor-type",
+      "type": "org.apache.ibatis.session.ExecutorType"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.zabbix.mapper-locations",
+      "type": "java.lang.String[]"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.zabbix.type-aliases-package",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.mybatis.spring.boot.autoconfigure.MybatisProperties",
+      "name": "oss.database.apigate.mybaltis.zabbix.type-handlers-package",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.system.started.javaconf.properties.RabbitMQConfigProperties",
+      "name": "oss.rabbit.apigate.notification.queuename",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.system.started.javaconf.properties.RabbitMQConfigProperties",
+      "name": "oss.rabbit.apigate.notification.routekey",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.system.started.javaconf.properties.RabbitMQConfigProperties",
+      "name": "oss.rabbit.apigate.notification.topic-exchange",
+      "type": "java.lang.String"
+    }
+  ]
+}

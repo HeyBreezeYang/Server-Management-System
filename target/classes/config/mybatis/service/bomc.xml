@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="i1cloud.oss.web.bomc">
+	<select id="selectBomcVcenterEvent" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+			select ifnull(t.manufacturerCode,k.manufacturerCode) manufacturerCode,
+					a.id eventId,
+					if(t.id is null,concat(k.hostName,'(',k.osIpAddress,')'),concat(t.name,'(',t.osIpAddress,')')) nodeName,
+					b.id eventCode,
+					a.value desciption,
+					b.levelId level,
+					if(a.status = 'GREEN',2,1) eventKind,
+					999999 eventType,
+					a.createTime,
+					999999 infoSource,
+					b.type eventDictType
+			from oss_resource_vcenter_trap a
+				join oss_resource_bomc_dict b on a.name = b.vcenterName
+				left join (select m.name,m.id,'VMWARE' manufacturerCode,n.osIpAddress,p.id poolId
+							from rn_base m,
+								rn_ext_osinfo n,
+								rn_ext_vir_instance i,
+								resourcepool p 
+							where m.type = 'VIR_INSTANCE' 
+								  and m.rnstatus = 'NORMAL'
+								  and m.id = n.nodeId
+								  and m.id = i.nodeId
+								  and i.region = p.regionName) t on t.name = a.targetObj
+				left join (select n.osIpAddress,m.hostname,m.id,x.manufacturerCode,x.poolId
+							from rn_base m,
+								rn_ext_osinfo n,
+								rn_ext_physical x
+							where m.type = 'COMPUTE' 
+								  and m.subType = 'VIRTUAL'
+								  and m.rnstatus = 'NORMAL'
+								  and m.id = n.nodeId
+								  and x.nodeId = m.id) k on k.osIpAddress = a.targetObj	
+			where (t.id is not null or k.id is not null )
+		
+		]]>
+			<if test="poolIds != null">
+				<![CDATA[ and (concat(',',#{poolIds},',') like concat('%,',t.poolId,',%') or concat(',',#{poolIds},',') like concat('%,',k.poolId,',%')) ]]>
+			</if>
+			<if test="nodeIds != null">
+				<![CDATA[ and (concat(',',#{nodeIds},',') like concat('%,',t.id,',%') or concat(',',#{nodeIds},',') like concat('%,',k.id,',%')) ]]>
+			</if>
+			<if test='beginTimeStamp != null'>
+				<![CDATA[ and unix_timestamp(createTime) > #{beginTimeStamp} ]]>
+			</if>
+			<if test='endTimeStamp != null'>
+				<![CDATA[ and unix_timestamp(createTime) <= #{endTimeStamp} ]]>
+			</if>
+	</select>
+	
+	<select id="selectBomcZabbixEvent" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+			select ifnull(t.manufacturerCode,k.manufacturerCode) manufacturerCode,
+					a.eventId eventId,
+					if(t.id is null,concat(k.hostName,'(',k.osIpAddress,')'),concat(t.name,'(',t.osIpAddress,')')) nodeName,
+					c.id eventCode,
+					a.description,
+					c.levelId level,
+					999999 eventKind,
+					999999 eventType,
+					a.clock createTime,
+					999999 infoSource,
+					c.type eventDictType
+			 from zabbix_event a
+				join v_monitor_host b on a.hostId = b.hostid 
+				join zabbix_host_item d on a.itemId = d.itemid 
+				join oss_resource_bomc_dict c on concat(',',c.zabbixItem,',') like concat('%,',d.parentItemId,',%') 
+				left join (select m.name,m.id,'VMWARE' manufacturerCode,n.osIpAddress,p.id poolId
+										from rn_base m,
+											rn_ext_osinfo n,
+											rn_ext_vir_instance i,
+											resourcepool p 
+										where m.type = 'VIR_INSTANCE' 
+											  and m.rnstatus = 'NORMAL'
+											  and m.id = n.nodeId
+											  and m.id = i.nodeId
+								  			  and i.region = p.regionName) t on t.id = b.id
+							left join (select n.osIpAddress,m.hostname,m.id,x.manufacturerCode,x.poolId
+										from rn_base m,
+											rn_ext_osinfo n,
+											rn_ext_physical x
+										where m.type = 'COMPUTE' 
+											  and (m.subType = 'VIRTUAL' or m.subType = 'PHYSICAL')
+											  and m.rnstatus = 'NORMAL'
+											  and m.id = n.nodeId
+											  and x.nodeId = m.id) k on k.id = b.id
+				where a.`status` = 'PROBLEM' 
+		]]>
+			<if test="poolIds != null">
+				<![CDATA[ and (concat(',',#{poolIds},',') like concat('%,',t.poolId,',%') or concat(',',#{poolIds},',') like concat('%,',k.poolId,',%')) ]]>
+			</if>
+			<if test="nodeIds != null">
+				<![CDATA[ and (concat(',',#{nodeIds},',') like concat('%,',t.id,',%') or concat(',',#{nodeIds},',') like concat('%,',k.id,',%')) ]]>
+			</if>
+			<if test='beginTimeStamp != null'>
+				<![CDATA[ and unix_timestamp(a.clock) > #{beginTimeStamp} ]]>
+			</if>
+			<if test='endTimeStamp != null'>
+				<![CDATA[ and unix_timestamp(a.clock) <= #{endTimeStamp} ]]>
+			</if>
+	</select>
+	
+	<select id="selectBomcMgmtEvent" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+			select ifnull(k.manufacturerCode,'999999') manufacturerCode,
+					if(k.subType='VIRTUAL',concat(k.hostName,'(',k.osIpAddress,')'),k.hostName) nodeName,
+					a.id eventId,
+					b.id eventCode,
+					a.content,
+					b.levelId level,
+					999999 eventKind,
+					999999 eventType,
+					a.createTime,
+					999999 infoSource,
+					b.type eventDictType
+					 from oss_resource_mgmt_trap a 
+							join oss_resource_bomc_dict b on a.name = b.mgmtName
+							left join (select n.osIpAddress,m.hostname,m.id,x.manufacturerCode,x.poolId,m.subType
+								from rn_base m,
+									rn_ext_osinfo n,
+									rn_ext_physical x
+								where m.type = 'COMPUTE' 
+									  and (m.subType = 'VIRTUAL' or m.subType = 'PHYSICAL')
+									  and m.rnstatus = 'NORMAL'
+									  and m.id = n.nodeId
+									  and x.nodeId = m.id) k on k.osIpAddress = a.ipaddress
+		]]>
+		<where>
+			<if test="poolIds != null">
+				<![CDATA[ and concat(',',#{poolIds},',') like concat('%,',poolId,',%') ]]>
+			</if>
+			<if test="nodeIds != null">
+				<![CDATA[ and concat(',',#{nodeIds},',') like concat('%,',k.id,',%') ]]>
+			</if>
+			<if test='beginTimeStamp != null'>
+				<![CDATA[ and unix_timestamp(createTime) > #{beginTimeStamp} ]]>
+			</if>
+			<if test='endTimeStamp != null'>
+				<![CDATA[ and unix_timestamp(createTime) <= #{endTimeStamp} ]]>
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectBomcOneAPMEvent" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+			select ifnull(k.model_type,'999999') manufacturerCode,
+					k.instance_name nodeName,
+					a.id eventId,
+					b.id eventCode,
+					a.content,
+					b.levelId level,
+					999999 eventKind,
+					999999 eventType,
+					a.createTime,
+					999999 infoSource,
+					b.type eventDictType
+					 from oss_resource_openapi_trap a 
+							join oss_resource_bomc_dict b on a.name = b.openapiName
+							left join (
+								select ip,instance_name,eqp_id id,model_type from openapi_network
+								) k on k.ip = a.ipaddress
+		]]>
+		<where>
+			<!-- 
+			<if test="poolIds != null">
+				<![CDATA[ and concat(',',#{poolIds},',') like concat('%,',poolId,',%') ]]>
+			</if>
+			 -->
+			<if test="nodeIds != null">
+				<![CDATA[ and concat(',',#{nodeIds},',') like concat('%,',k.id,',%') ]]>
+			</if>
+			<if test='beginTimeStamp != null'>
+				<![CDATA[ and unix_timestamp(createTime) > #{beginTimeStamp} ]]>
+			</if>
+			<if test='endTimeStamp != null'>
+				<![CDATA[ and unix_timestamp(createTime) <= #{endTimeStamp} ]]>
+			</if>
+		</where>
+	</select>
+</mapper>

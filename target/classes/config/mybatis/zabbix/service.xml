@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxos.db.zabbix">
+
+	<select id="selectRNExtVirInstancesHostOrder" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+			select (select m.hostid from items m where m.itemid = t.itemid) hostId
+			from history t,
+				(select a.itemid ,max(clock) clock
+					from history  a
+					where concat(',',#{itemIds},',') like concat('%,',a.itemid,',%')
+					group by a.itemid) k
+			where t.itemid = k.itemid
+				and t.clock = k.clock
+			]]>
+		<![CDATA[  order by t.value ]]>
+		<if test="sortDirection != null">
+			${sortDirection} 
+		</if>
+	</select>
+	
+	<select id="selectResourceMonitorHostOrder" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		SELECT b.hostid hostId,
+				a.itemid,
+		]]>
+			<if test="showMonitor == 'HOUR'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y-%m-%d %H:00:00') countTime,]]>
+			</if>
+			<if test="showMonitor == 'MONTH'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y-%m') countTime,]]>
+			</if>
+			<if test="showMonitor == 'DAY'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y-%m-%d') countTime,]]>
+			</if>
+			<if test="showMonitor == 'WEEK'">
+				<![CDATA[ date_format(FROM_UNIXTIME( a.clock ,'%Y-%m-%d'),'%u') countTime ,]]>
+			</if>
+		<![CDATA[
+			ROUND(min(value_min),4) value_min,
+		    ROUND(max(value_max),4) value_max,
+		    ROUND(avg(value_avg),4) value_avg,
+		    sum(num) num
+		FROM trends a,
+			items b
+		where concat(',',#{itemIds},',') like concat('%,',b.templateid,',%')
+			and a.itemid = b.itemid
+		]]>
+			<if test="targetHostIds != null">
+				<![CDATA[ and concat(',',#{targetHostIds},',') like concat('%,',b.hostid,',%')]]>
+			</if>
+			<if test="showMonitor == 'TOP'">
+				<![CDATA[ and a.clock >= #{beginTimeStamp} and a.clock <= #{endTimeStamp}]]>
+			</if>
+			<if test="showMonitor == 'HOUR'">
+				<![CDATA[ and FROM_UNIXTIME( a.clock ,'%Y-%m-%d %H:00:00') = date_format(date_sub(now(),interval 1 hour),'%Y-%m-%d %H:00:00')]]>
+			</if>
+			<if test="showMonitor == 'MONTH'">
+				<![CDATA[ and date_format(FROM_UNIXTIME( a.clock ,'%Y-%m-%d'),'%c') = date_format(now(),'%c') - 1]]>
+			</if>
+			<if test="showMonitor == 'DAY'">
+				<![CDATA[ and FROM_UNIXTIME( a.clock ,'%Y-%m-%d') = date_sub(curdate(),interval 1 day)]]>
+			</if>
+			<if test="showMonitor == 'WEEK'">
+				<![CDATA[ and date_format(FROM_UNIXTIME( a.clock ,'%Y-%m-%d'),'%u') = date_format(now(),'%u') - 1]]>
+			</if>
+		<![CDATA[			
+		group by a.itemid
+		]]>
+		<if test="showMonitor != 'TOP'">
+		<![CDATA[,countTime]]>
+		</if>
+		<![CDATA[	
+		union all
+		SELECT b.hostid hostId,
+				a.itemid,
+		]]>
+			<if test="showMonitor == 'HOUR'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y-%m-%d %H:00:00') countTime,]]>
+			</if>
+			<if test="showMonitor == 'MONTH'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y-%m') countTime,]]>
+			</if>
+			<if test="showMonitor == 'DAY'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y-%m-%d') countTime,]]>
+			</if>
+			<if test="showMonitor == 'WEEK'">
+				<![CDATA[ week(FROM_UNIXTIME( a.clock ,'%Y-%m-%d')) countTime ,]]>
+			</if>
+		<![CDATA[
+			ROUND(min(value_min),4) value_min,
+		    ROUND(max(value_max),4) value_max,
+		    ROUND(avg(value_avg),4) value_avg,
+		    sum(num) num
+		FROM trends_uint a ,
+			items b
+		where a.itemid = b.itemid 
+			and concat(',',#{itemIds},',') like concat('%,',b.templateid,',%')
+		]]>
+			<if test="targetHostIds != null">
+				<![CDATA[ and concat(',',#{targetHostIds},',') like concat('%,',b.hostid,',%')]]>
+			</if>
+			<if test="showMonitor == 'TOP'">
+				<![CDATA[ and a.clock >= #{beginTimeStamp} and a.clock <= #{endTimeStamp}]]>
+			</if>
+			<if test="showMonitor == 'HOUR'">
+				<![CDATA[ and FROM_UNIXTIME( a.clock ,'%Y-%m-%d %H:00:00') = date_format(date_sub(now(),interval 1 hour),'%Y-%m-%d %H:00:00')]]>
+			</if>
+			<if test="showMonitor == 'MONTH'">
+				<![CDATA[ and date_format(FROM_UNIXTIME( a.clock ,'%Y-%m-%d'),'%c') = date_format(now(),'%c') - 1]]>
+			</if>
+			<if test="showMonitor == 'DAY'">
+				<![CDATA[ and FROM_UNIXTIME( a.clock ,'%Y-%m-%d') = date_sub(curdate(),interval 1 day)]]>
+			</if>
+			<if test="showMonitor == 'WEEK'">
+				<![CDATA[ and date_format(FROM_UNIXTIME( a.clock ,'%Y-%m-%d'),'%u') = date_format(now(),'%u') - 1]]>
+			</if>
+		<![CDATA[		
+		group by a.itemid
+		]]>
+		<if test="showMonitor != 'TOP'">
+		<![CDATA[,countTime]]>
+		</if>
+		<![CDATA[	
+		order by 
+		]]>
+		<if test="sortType == null">
+		<![CDATA[ value_avg ]]>
+		</if>
+		<if test="sortType != null">
+		<![CDATA[ ${sortType} ]]>
+		</if>
+		<![CDATA[	
+		
+		]]>
+		<if test="sortDirection != null">
+			${sortDirection} 
+		</if>
+	</select>
+	
+	<select id="selectZabbixItemPanel" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select group_concat(itemid order by itemid) itemid,countTime,ROUND(avg(value_min)) value_min,ROUND(avg(value_max)) value_max,ROUND(avg(value_avg)) value_avg,ROUND(sum(value_avg)) value_sum
+		from (SELECT itemid,FROM_UNIXTIME( max(clock) ,'%Y-%m-%d %H:%i') countTime,
+					ROUND(min(value),4) value_min,
+				    ROUND(max(value),4) value_max,
+				    ROUND(avg(value),4) value_avg
+				FROM history a 
+				where concat(',',#{itemId},',') like concat('%,',itemid,',%')
+					and clock <= #{endTimeStamp}
+					and clock >= #{beginTimeStamp}
+				group by itemid
+				union all
+				SELECT itemid,FROM_UNIXTIME( max(clock) ,'%Y-%m-%d %H:%i') countTime,
+					ROUND(min(value),4) value_min,
+				    ROUND(max(value),4) value_max,
+				    ROUND(avg(value),4) value_avg
+				FROM history_uint a 
+				where concat(',',#{itemId},',') like concat('%,',itemid,',%')
+					and clock <= #{endTimeStamp}
+					and clock >= #{beginTimeStamp} 
+				group by itemid) t
+		]]>
+	</select>
+	<select id="selectZabbixItemReport" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		SELECT itemid,
+		]]>
+			<if test="reportType == 'YEAR'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y') countTime,]]>
+			</if>
+			<if test="reportType == 'MONTH'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y-%m') countTime,]]>
+			</if>
+			<if test="reportType == 'DAY'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y-%m-%d') countTime,]]>
+			</if>
+			<if test="reportType == 'HOUR'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y-%m-%d %H:00') countTime,]]>
+			</if>
+			<if test="reportType == 'MINUTE'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y-%m-%d %H:%i') countTime,]]>
+			</if>
+			<if test="reportType == 'WEEK'">
+				<![CDATA[ date_format(FROM_UNIXTIME( a.clock ,'%Y-%m-%d'),'%u') countTime ,]]>
+			</if>
+			<if test="reportType == 'QUARTER'">
+				<![CDATA[ QUARTER(FROM_UNIXTIME( a.clock ,'%Y-%m-%d')) countTime ,]]>
+			</if>
+		<![CDATA[
+			ROUND(min(value_min),4) value_min,
+		    ROUND(max(value_max),4) value_max,
+		    ROUND(avg(value_avg),4) value_avg,
+		    sum(num) num
+		FROM trends a 
+		where concat(',',#{itemId},',') like concat('%,',itemid,',%')
+			and clock <= #{endTimeStamp}
+			and clock >= #{beginTimeStamp}
+		group by itemid,countTime
+		union all
+		SELECT itemid,
+		]]>
+			<if test="reportType == 'YEAR'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y') countTime,]]>
+			</if>
+			<if test="reportType == 'MONTH'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y-%m') countTime,]]>
+			</if>
+			<if test="reportType == 'DAY'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y-%m-%d') countTime,]]>
+			</if>
+			<if test="reportType == 'HOUR'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y-%m-%d %H:00') countTime,]]>
+			</if>
+			<if test="reportType == 'MINUTE'">
+				<![CDATA[ FROM_UNIXTIME( a.clock ,'%Y-%m-%d %H:%i') countTime,]]>
+			</if>
+			<if test="reportType == 'WEEK'">
+				<![CDATA[ date_format(FROM_UNIXTIME( a.clock ,'%Y-%m-%d'),'%u') countTime ,]]>
+			</if>
+			<if test="reportType == 'QUARTER'">
+				<![CDATA[ QUARTER(FROM_UNIXTIME( a.clock ,'%Y-%m-%d')) countTime ,]]>
+			</if>
+		<![CDATA[
+			ROUND(min(value_min),4) value_min,
+		    ROUND(max(value_max),4) value_max,
+		    ROUND(avg(value_avg),4) value_avg,
+		    sum(num) num
+		FROM trends_uint a 
+		where concat(',',#{itemId},',') like concat('%,',itemid,',%')
+			and clock <= #{endTimeStamp}
+			and clock >= #{beginTimeStamp}
+		group by itemid,countTime
+		order by countTime desc; 
+		]]>
+	</select>
+	
+	
+	<select id="selectResourceMonitorHostCount" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		SELECT 
+			ROUND(min(value_min),4) value_min,
+		    ROUND(max(value_max),4) value_max,
+		    ROUND(avg(value_avg),4) value_avg,
+		    sum(num) num
+		FROM trends a,
+			items b
+		where concat(',',#{itemIds},',') like concat('%,',b.templateid,',%') 
+			and a.itemid = b.itemid
+		]]>
+			<if test="targetHostIds != null">
+				<![CDATA[ and concat(',',#{targetHostIds},',') like concat('%,',b.hostid,',%')]]>
+			</if>
+			<if test="showMonitor == 'TOP'">
+				<![CDATA[ and a.clock >= #{beginTimeStamp} and a.clock <= #{endTimeStamp}]]>
+			</if>
+		<![CDATA[	
+		union all
+		SELECT 
+			ROUND(min(value_min),4) value_min,
+		    ROUND(max(value_max),4) value_max,
+		    ROUND(avg(value_avg),4) value_avg,
+		    sum(num) num
+		FROM trends_uint a ,
+			items b
+		where a.itemid = b.itemid 
+			and concat(',',#{itemIds},',') like concat('%,',b.templateid,',%')
+		]]>
+			<if test="targetHostIds != null">
+				<![CDATA[ and concat(',',#{targetHostIds},',') like concat('%,',b.hostid,',%')]]>
+			</if>
+			<if test="showMonitor == 'TOP'">
+				<![CDATA[ and a.clock >= #{beginTimeStamp} and a.clock <= #{endTimeStamp}]]>
+			</if>
+	</select>
+	
+	<select id="selectZabbixDiscoveryItem" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+			select a.itemid,a.hostid,a.name,a.key_,a.units,a.formula 
+			from items a join (select b.itemid from item_discovery b 
+								join (select itemid from items a where a.templateid  = #{templateId} and hostid = #{hostId}) c on b.parent_itemid = c.itemid) d
+						 on a.itemid = d.itemid
+		]]>
+	</select>
+	
+	<select id="selectZabbixDiscoveryItemValue" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+			select a.* from ${historyTableName} a 
+			where itemid = #{itemId} 
+		]]>
+		<if test="endTime != null">
+			<![CDATA[ and clock <= #{endTime}]]>
+		</if>
+		<if test="beginTime != null">
+			<![CDATA[ and clock >= #{beginTime}]]>
+		</if>
+		<![CDATA[
+			order by clock desc
+			limit 0,#{length}
+		]]>
+	</select>
+</mapper>

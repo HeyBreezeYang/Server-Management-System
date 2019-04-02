@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="i1cloud.oss.web.openapi">
+
+	<select id="selectOpenapiResourcePoolSystemsCount" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select count(*) totalSize 
+		from resourcepoolsystem a
+		]]>
+		<where>
+			<if test="filterField != null">
+				${filterField}
+			</if>
+		</where>
+	</select>
+	<select id="selectOpenapiResourcePoolSystems" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select 
+		]]>
+		<if test="field != null">
+			${field}
+		</if>
+		<![CDATA[
+		from resourcepoolsystem a
+		]]>
+		<where>
+			<if test="filterField != null">
+				${filterField}
+			</if>
+		</where>
+		<if test="sortField != null">
+			${sortField}
+		</if>
+		<if test="beginIndex != null">
+			limit #{beginIndex},#{perPage}
+		</if>
+	</select>
+	
+	<select id="selectOpenapiBusinessSystemsCount" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select count(*) totalSize 
+		from resourcepool a,
+			resourcepoolsystem b
+		where a.systemId = b.id
+		]]>
+		<if test="filterField != null">
+			and ${filterField}
+		</if>
+	</select>
+	<select id="selectOpenapiBusinessSystems" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select 
+		]]>
+		<if test="field != null">
+			${field}
+		</if>
+		<![CDATA[
+		from resourcepool a,
+			resourcepoolsystem b
+		where a.systemId = b.id
+		]]>
+		<if test="filterField != null">
+			and ${filterField}
+		</if>
+		<if test="sortField != null">
+			${sortField}
+		</if>
+		<if test="beginIndex != null">
+			limit #{beginIndex},#{perPage}
+		</if>
+	</select>
+	
+	<select id="selectOpenapiHostCount" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select count(*) totalSize 
+		from rn_base a,
+			rn_ext_physical b,
+			rn_ext_systeminfo c,
+			rn_ext_compute d,
+			rn_ext_osinfo e,
+			resourcepool k,
+			oss_engine_regions t
+		where a.rnStatus = 'NORMAL'
+			and a.`type` = 'COMPUTE'
+			and a.subType = 'VIRTUAL'
+			and a.id = b.nodeId
+			and a.id = c.nodeid
+			and a.id = d.nodeid
+			and a.id = e.nodeid
+			and b.poolid = k.id
+			and k.regionName = t.region_name
+		]]>
+			<if test="filterField != null">
+				and ${filterField}
+			</if>
+	</select>
+	<select id="selectOpenapiHost" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select 
+		]]>
+		<if test="field != null">
+			${field}
+		</if>
+		<![CDATA[
+		from rn_base a,
+			rn_ext_physical b,
+			rn_ext_systeminfo c,
+			rn_ext_compute d,
+			rn_ext_osinfo e,
+			resourcepool k,
+			oss_engine_regions t
+		where a.rnStatus = 'NORMAL'
+			and a.`type` = 'COMPUTE'
+			and a.subType = 'VIRTUAL'
+			and a.id = b.nodeId
+			and a.id = c.nodeid
+			and a.id = d.nodeid
+			and a.id = e.nodeid
+			and b.poolid = k.id
+			and k.regionName = t.region_name
+		]]>
+		<if test="filterField != null">
+			and ${filterField}
+		</if>
+		<if test="sortField != null">
+			${sortField}
+		</if>
+		<if test="beginIndex != null">
+			limit #{beginIndex},#{perPage}
+		</if>
+	</select>
+	
+	
+	<select id="selectOpenapiServerCount" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select count(*) totalSize 
+		from rn_base a
+			join rn_ext_physical b on b.nodeid = a.id
+			join rn_ext_systeminfo c on c.nodeid = a.id
+			join rn_ext_compute d on d.nodeid = a.id
+			join rn_ext_osinfo e on e.nodeid = a.id
+			join rn_ext_mgmtinfo m on m.nodeid = a.id 
+			join resourcepool x on x.id = b.poolid
+			join resourcepoolsystem y on y.id = x.systemId
+		where a.rnStatus = 'NORMAL'
+			and a.`type` = 'COMPUTE'
+		]]>
+			<if test="subType == null">
+				and a.subType = 'PHYSICAL'
+			</if>
+			<if test="filterField != null">
+				and ${filterField}
+			</if>
+	</select>
+	<select id="selectOpenapiServer" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select 
+		]]>
+		<if test="field != null">
+			${field}
+		</if>
+		<![CDATA[
+		from rn_base a
+			join rn_ext_physical b on b.nodeid = a.id
+			join rn_ext_systeminfo c on c.nodeid = a.id
+			join rn_ext_compute d on d.nodeid = a.id
+			join rn_ext_osinfo e on e.nodeid = a.id
+			join rn_ext_mgmtinfo m on m.nodeid = a.id 
+			join resourcepool x on x.id = b.poolid
+			join resourcepoolsystem y on y.id = x.systemId
+      		left join rn_ext_interface k on k.nodeid = a.id  and k.ipaddress != e.osIpaddress and k.ipaddress not like '127%'
+		where a.rnStatus = 'NORMAL'
+			and a.`type` = 'COMPUTE'
+		]]>
+		<if test="subType == null">
+			and a.subType = 'PHYSICAL'
+		</if>
+		<if test="filterField != null">
+			and ${filterField}
+		</if>
+		<if test="groupField != null">
+			group by ${groupField}
+		</if>
+		<if test="sortField != null">
+			${sortField}
+		</if>
+		<if test="beginIndex != null">
+			limit #{beginIndex},#{perPage}
+		</if>
+	</select>
+	
+	<select id="selectOpenapiCloudVmCount" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select count(*) totalSize 
+		from rn_base a
+			join rn_ext_systeminfo c on a.id = c.nodeid
+			join rn_ext_osinfo e on e.nodeid = a.id
+			join rn_ext_vir_instance n on n.nodeid = a.id
+			join rn_ext_vir_image p on n.imageref = p.uuid
+			join oss_engine_regions t on n.region = t.region_name 
+			join resourcepool x on x.regionName = n.region
+			join resourcepoolsystem y on y.id = x.systemId     		
+		where a.rnStatus = 'NORMAL'
+		]]>
+			<if test="filterField != null">
+				and ${filterField}
+			</if>
+	</select>
+	<select id="selectOpenapiCloudVm" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select 
+		]]>
+		<if test="field != null">
+			${field}
+		</if>
+		<![CDATA[
+		from rn_base a
+			join rn_ext_systeminfo c on a.id = c.nodeid
+			join rn_ext_osinfo e on e.nodeid = a.id
+			join rn_ext_vir_instance n on n.nodeid = a.id
+			join rn_ext_vir_image p on n.imageref = p.uuid
+			join oss_engine_regions t on n.region = t.region_name  
+			join resourcepool x on x.regionName = n.region
+			join resourcepoolsystem y on y.id = x.systemId     		    		
+			left join rn_ext_interface k on k.nodeid = a.id  and k.ipaddress != e.osIpaddress and k.ipaddress not like '127%'
+			left join rn_ext_compute f on n.parentNodeId = f.nodeid
+		where a.rnStatus = 'NORMAL'
+		]]>
+		<if test="filterField != null">
+			and ${filterField}
+		</if>
+		<if test="groupField != null">
+			group by ${groupField}
+		</if>
+		<if test="sortField != null">
+			${sortField}
+		</if>
+		<if test="beginIndex != null">
+			limit #{beginIndex},#{perPage}
+		</if>
+	</select>
+	
+	<select id="selectOpenapiBlockStorageCount" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select count(*) totalSize 
+		from rn_base a,
+			rn_ext_vir_volumes b
+		where a.id = b.nodeid
+				and a.rnstatus = 'NORMAL'
+		]]>
+			<if test="filterField != null">
+				and ${filterField}
+			</if>
+	</select>
+	<select id="selectOpenapiBlockStorage" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select 
+		]]>
+		<if test="field != null">
+			${field}
+		</if>
+		<![CDATA[
+		from rn_base a,
+			rn_ext_vir_volumes b,
+			resourcepool c
+		where a.id = b.nodeid
+				and a.rnstatus = 'NORMAL'
+				and b.region=c.regionName
+		]]>
+		<if test="filterField != null">
+			and ${filterField}
+		</if>
+		<if test="sortField != null">
+			${sortField}
+		</if>
+		<if test="beginIndex != null">
+			limit #{beginIndex},#{perPage}
+		</if>
+	</select>
+	
+	<select id="selectVmwareRegion" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select * 
+		from oss_engine_regions a,
+			resourcepool b,
+			resourcepoolsystem c
+		where a.type = 'VMWARE'
+			and a.region_name = b.regionName
+			and b.systemid = c.id
+		]]>
+	</select>
+	
+	<select id="selectOpenapiMonitorPmItems" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select a.hostid,t.id nodeId,b.indicatorName,c.displayName,x.safeZoneCode,x.systemId,a.itemid,t.vcpus,x.businessCode,y.department
+		from ZABBIX_Host_Item a,
+			openapi_monitor_item_map b,
+			ZABBIX_Template_Item c,
+			monitornodehost d,
+			]]>
+			<if test="DEVICE_TYPE == 'CLOUD_VM'">
+				<![CDATA[resourcepool x,
+						resourcepoolsystem y,
+						rn_ext_vir_instance t]]>
+			</if>
+			<if test="DEVICE_TYPE == 'SERVER'">
+				<![CDATA[resourcepool x,
+						resourcepoolsystem y,
+						rn_ext_physical k,
+						rn_ext_compute t]]>
+			</if>
+		<![CDATA[
+		where a.parentItemId = c.itemId
+			and c.itemId = b.itemId
+			and a.hostid = d.hostId
+		    and c.flag = 0
+		    and a.status = 0
+			and b.type=#{DEVICE_TYPE}
+			]]>
+			<if test="DEVICE_TYPE == 'CLOUD_VM'">
+				<![CDATA[and t.nodeid = d.nodeid
+						 and t.region = x.regionName
+						 and x.systemId = y.id
+				and d.nodeId in (select t.id from rn_base t,rn_ext_vir_instance k where t.id = k.nodeid and t.rnStatus = 'NORMAL')]]>
+			</if>
+			<if test="DEVICE_TYPE == 'SERVER'">
+				<![CDATA[and k.nodeid = d.nodeid
+						and k.poolId = x.id 
+						and t.nodeid = d.nodeid
+						 and x.systemId = y.id
+						and d.nodeId in (select t.id from rn_base t where t.type = 'COMPUTE' and t.rnStatus = 'NORMAL')]]>
+			</if>
+		<![CDATA[
+		union all
+		select a.hostid,t.id nodeId,b.indicatorName,c.displayName,x.safeZoneCode,x.systemId,group_concat(a.itemid order by a.itemid) itemid,t.vcpus,x.businessCode,y.department
+		from ZABBIX_Host_Item a,
+			openapi_monitor_item_map b,
+			ZABBIX_Template_Item c,
+			monitornodehost d,
+			]]>
+			<if test="DEVICE_TYPE == 'CLOUD_VM'">
+				<![CDATA[resourcepool x,
+						resourcepoolsystem y,
+						rn_ext_vir_instance t]]>
+			</if>
+			<if test="DEVICE_TYPE == 'SERVER'">
+				<![CDATA[resourcepool x,
+						resourcepoolsystem y,
+						rn_ext_physical k,
+						rn_ext_compute t]]>
+			</if>
+		<![CDATA[
+		where c.itemId = b.itemId
+			and b.type=#{DEVICE_TYPE}
+			and a.hostid = d.hostId
+		    and c.flag = 2
+		    and a.status = 0
+		    and a.key_ like concat(substring_index(c.key_,'{',1),b.params, substring(c.key_,locate('}',c.key_)+1,length(c.key_)-locate('}',c.key_)))
+		]]>
+		<if test="DEVICE_TYPE == 'CLOUD_VM'">
+			<![CDATA[and t.nodeid = d.nodeid
+					 and x.systemId = y.id
+					 and t.region = x.regionName
+					 and d.nodeId in (select t.id from rn_base t,rn_ext_vir_instance k where t.id = k.nodeid and t.rnStatus = 'NORMAL')]]>
+		</if>
+		<if test="DEVICE_TYPE == 'SERVER'">
+			<![CDATA[and k.nodeid = d.nodeid
+					and k.poolId = x.id 
+					and x.systemId = y.id
+					and t.nodeid = d.nodeid
+					and d.nodeId in (select t.id from rn_base t where t.type = 'COMPUTE' and t.rnStatus = 'NORMAL')]]>
+		</if>
+		<![CDATA[ group by t.id,a.hostid,d.nodeId,b.indicatorName,c.displayName,x.safeZoneCode,x.systemId,t.vcpus,x.businessCode,y.department ]]>
+	</select>
+	
+	<select id="selectOpenapiNetworkCount" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select count(*) totalSize
+		from openapi_network a
+		]]>
+		<where>
+			<if test='category != null'>
+			<![CDATA[ and category = #{category} ]]>
+			</if>
+		</where>
+	</select>
+	<select id="selectOpenapiNetwork" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select a.* 
+		from openapi_network a
+		]]>
+		<where>
+			<if test='category != null'>
+			<![CDATA[ and category = #{category} ]]>
+			</if>
+		</where>
+		<if test="beginIndex != null">
+			limit #{beginIndex},#{perPage}
+		</if>
+	</select>
+	
+	<insert id="insertOpenapiNetwork" parameterType="java.util.HashMap">
+		<![CDATA[
+		insert into openapi_network(instance_id,instance_name,category,ip)
+		values(#{instance_id},#{instance_name},#{category_name},#{ip})
+		]]>
+		<selectKey keyProperty="eqp_id" resultType="int" order="AFTER">
+			select LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	<update id="updateOpenapiNetwork" parameterType="java.util.HashMap">
+		<![CDATA[
+			update openapi_network
+			set serialnum = #{serialnum},
+				systemId = #{systemId},
+				model_type = #{model_type},
+				portNum = #{portNum},
+				bandwidth = #{bandwidth}
+			where eqp_id = #{eqp_id}
+		]]>
+	</update>
+	
+	<select id="selectOpenapiSummary" parameterType="java.util.HashMap" resultType="java.util.LinkedHashMap">
+		<![CDATA[
+		select a.*,from_unixtime(unix_timestamp(a.countTime),'%Y-%m-%d %H:%i') countTimeStr
+		from openapi_summary a
+		]]>
+		<where>
+			<if test='type != null'>
+			<![CDATA[ and type = #{type} ]]>
+			</if>
+			<if test='resourceType != null'>
+			<![CDATA[ and resourceType = #{resourceType} ]]>
+			</if>
+			<if test='beginTimeStamp != null'>
+			<![CDATA[ and unix_timestamp(countTime) >= #{beginTimeStamp} ]]>
+			</if>
+			<if test='endTimeStamp != null'>
+			<![CDATA[ and unix_timestamp(countTime) <= #{endTimeStamp} ]]>
+			</if>
+		</where>
+		<![CDATA[order by countTime desc]]>
+	</select>
+	<insert id="insertOpenapiSummary" parameterType="java.util.HashMap">
+		<![CDATA[
+		insert into openapi_summary(type,resourceType,resourceId,countTime,content)
+		values(#{viewType},#{resource_type},#{resource_id},from_unixtime(#{countTime}),#{content})
+		]]>
+	</insert>
+	
+	
+	<insert id="insertOpenapiTrap" parameterType="java.util.HashMap">
+		<![CDATA[
+		insert into oss_resource_openapi_trap(name,ipaddress,status,content,serverIpAddress)
+		values(#{resourceName},#{ipAddress},#{metricLevel},#{content},#{serverIpAddress})
+		]]>
+		<selectKey keyProperty="openapiTrapId" resultType="int" order="AFTER">
+			select LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+</mapper>
